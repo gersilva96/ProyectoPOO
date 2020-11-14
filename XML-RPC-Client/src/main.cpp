@@ -20,9 +20,9 @@ int main(int argc, char *argv[]) {
   int a;
   int b;
 
-  cout << "Ingrese el primero: ";
+  cout << "Ingrese el primer número: ";
   cin >> a;
-	cout << "Ingrese el segundo: ";
+	cout << "Ingrese el segundo número: ";
   cin >> b;
 
   XmlRpcValue numbers;
