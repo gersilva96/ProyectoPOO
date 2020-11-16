@@ -3,7 +3,7 @@ from classes.Comandos import Comandos
 
 print("\nBienvenido al proyecto de Programación Orientada a Objetos 2020 \n")
 print("¿Qué desea hacer?\n")
-print("Ver manual de instrucciones---------1\nConectar con el robot---------------2\n")
+print("Ver manual de instrucciones------------------1\nConectar con el robot------------------------2\nModo manual----------------------------------3\nEsperar insturcciones del cliente------------4 \nIniciar simulación de prueba-----------------5\n")
 res1 = int(input())
 if res1 == 1:
 	print("Sección de ayuda de comandos.Introduzca help para ver los comandos documentados\n")
@@ -13,14 +13,13 @@ if res1 == 1:
 if res1 == 2:
 	print("\nConectando con el robot...")
 	print("Conección exitosa")
-	print("¿En que modo desea trabajar?\n")
-	print("Modo manual----------------------------------1\nEsperar insturcciones del cliente------------2 \nIniciar simulación de prueba-----------------3\n")
-	res2 = int(input())
-	if res2 == 1:
-		print("a")
-	if res2 == 2:
+	#Conectar con la funcion Robot
+if res2 == 3:
+	print("Iniciando modo manual")
+	#Conectar con la funcion Robot
+if res2 == 4:
 		print("Lanzando servidor...\n")
 		obj = Comandos
 		servidor = XmlRpcServer()
-	if res2 == 3:
+if res2 == 5:
 		print("Ejecutando archivo de prueba")
