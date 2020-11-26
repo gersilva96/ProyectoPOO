@@ -1,48 +1,103 @@
+import sys
+import os
 from cmd import Cmd
+from classes.XmlRpcServer import XmlRpcServer
 
 class Comandos(Cmd):
-	doc_header = "Ayuda de comandos documentados"
-	undoc_header = "Ayuda de comandos no documentados"
-	ruler = "*"
-	lista = ['python', 'c++', 'php', 'java', 'c#', 'js']
+	doc_header = 'Ayuda de comandos documentados (escriba \'help <command>\')'
+	undoc_header = 'Ayuda de comandos no documentados'
 
-	def do_list(self, args):
-		"""list palabra: Lista todos los elementos a partir de la palabra indicada"""
-		argumentos = args.split()
-		if len(argumentos) >= 1:
-			try:
-				i = self.lista.index(argumentos[0])
-				print(self.lista[i:])
-			except:
-				print(argumentos[0] + ' no se encuentra en la lista')
-		else:
-			print(self.lista)
+	def __init__(self):
+		Cmd.__init__(self)
+		self.servidor = None
 
-	def do_add(self, args):
-		"""add palabra: Agrega la palabra indicada a la lista"""
-		argumentos = args.split()
-		if len(argumentos) >= 1:
-			self.lista.append(argumentos[0])
-		else:
-			self.onecmd('help add')
+	def do_report(self, value):
+		'''\nMuestra un reporte completo del sistema.\n'''
+		print('\nMostrando reporte...\n')
 
-	def do_quit(self, args):
-		"""quit sale del interprete"""
-		print("Ejecucion UnCLI terminada")
-		raise SystemExit
+	def do_mode(self,value):
+		'''\nDefine el modo de funcionamiento del sistema.\''''
+		options = {
+			'manual': 'Modo manual',
+			'automatic': 'Modo automático',
+			'exit': 'Salir del comando \'mode\'',
+		}
+		self.printOptions(options)
+		keys = []
+		for key in options.keys():
+			keys.append(key)
+		option = ''
+		while option != 'exit':
+			if (option != '' and option != keys[0] and option != keys[1] and option != 'clear'):
+				print('\nOpción <<'+ option +'>> no encontrada\n')
+			option = input('mode >> ')
+			if option.lower() == keys[0]:
+				print('\nEjecutando modo manual...\n')
+			elif option.lower() == keys[1]:
+				print('\nEjecutando modo automático...\n')
+			elif option.lower() == keys[2]:
+				print('\nSaliendo del comando \'mode\'...\n')
+			elif option == 'clear':
+				os.system('clear')
+				self.printOptions(options)
 
-	def default(self, args):
-		print("Error. El comando \'" + args + "\' no esta disponible")
+	def do_xml_rpc(self, value):
+		'''\nInicia o detiene el servidor XML-RPC según el valor dado (On/Off).\n'''
+		options = {
+			'on': 'Inicia el servidor',
+			'off': 'Detiene el servidor',
+			'status': 'Indica el estado actual del servidor',
+			'exit': 'Salir del comando \'xml_rpc\'',
+		}
+		self.printOptions(options)
+		keys = []
+		for key in options.keys():
+			keys.append(key)
+		option = ''
+		while option != 'exit':
+			if (option != '' and option != keys[0] and option != keys[1] and option != keys[2] and option != 'clear'):
+				print('\nOpción <<'+ option +'>> no encontrada\n')
+			option = input('xml_rpc >> ')
+			if option.lower() == keys[0]:
+				print('\nIniciando servidor XML-RPC...\n')
+				self.servidor = XmlRpcServer()
+				print('\n\n\n\n')
+			elif option.lower() == keys[1]:
+				print('\nDeteniendo servidor XML-RPC...\n')
+				self.servidor.shutdown()
+			elif option.lower() == keys[2]:
+				print('\nObteniendo estado del servidor XML-RPC...\n')
+			elif option.lower() == keys[3]:
+				print('\nSaliendo del comando \'xml_rpc\'...\n')
+			elif option == 'clear':
+				os.system('clear')
+				self.printOptions(options)
 
-	def precmd(self, args):
-		args = args.lower()
-		return(args)
+	def do_clear(self, value):
+		'''\nLimpia la consola.\n'''
+		self.init('')
 
-	def do_reporte(self, args):
-		"""Genera el reporte de los movimientos del robot"""
-		print("Generando reporte...")
-		print("El reporte se guardó en el archivo $$$$")
+	def do_exit(self, value):
+		'''\nFrena el servidor XML-RPC si está activo y finaliza el programa.\n'''
+		print('')
+		print('*' + '-'*70 + '*')
+		print('|' + '{:^70}'.format('Programa finalizado') + '|')
+		print('*' + '-'*70 + '*')
+		sys.exit()
 
-	def do_PosicionInicial(self, args):
-		"""Lleva al brazo robótico a su posición inicial"""
-		print("Llevando el robot a la posicion inicial")
+	def init(self, value):
+		os.system('clear')
+		print('*' + '-'*70 + '*')
+		print('|' + '{:^70}'.format('Programación Orientada a Objetos 2020') + '|')
+		print('|' + '{:^70}'.format('Intefaz de control servidor Robot-RRR') + '|')
+		print('|' + '{:^70}'.format('') + '|')
+		print('|' + '{:>70}'.format('Wieckowski, Martín - Silva, Germán') + '|')
+		print('|' + '{:^70}'.format('') + '|')
+		print('|' + '{:<70}'.format('Utilice el comando \'help\' para obtener ayuda del sistema.') + '|')
+		print('*' + '-'*70 + '*\n')
+
+	def printOptions(self, options):
+		print('\nIngrese una de las siguientes opciones:\n')
+		for key in options:
+			print(key + ": " + options[key])
+		print('')
