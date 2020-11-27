@@ -1,5 +1,5 @@
-from classes.Robot_RRR.Articulacion import ArticulacionC
-from classes.Robot_RRR.EfectorF import Efector
+from classes.robot.Articulacion import ArticulacionC
+from classes.robot.EfectorFinal import EfectorFinal
 
 class Robot:
 	#Articulacion de la base, puede rotar 360 grados
@@ -27,7 +27,7 @@ class Robot:
 		ArticulacionC().GirarArticulacion()
 
 	def EfectorFinal(self, tiempo):
-		Efector().ActivarEfector(tiempo)
+		EfectorFinal().ActivarEfector(tiempo)
 
 
 	

@@ -1,6 +1,6 @@
 import time
 
-class Efector:
+class EfectorFinal:
 	def ActivarEfector(self, tiempo):
 		time.sleep(tiempo)
 

@@ -2,7 +2,7 @@ import sys
 import os
 from cmd import Cmd
 from classes.XmlRpcServer import XmlRpcServer
-from classes.Robot_RRR.ComandosRobot import ComandosR
+from classes.robot.ComandosRobot import ComandosR
 
 class Comandos(Cmd):
 	doc_header = 'Ayuda de comandos documentados (escriba \'help <command>\')'

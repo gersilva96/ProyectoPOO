@@ -1,5 +1,5 @@
 from cmd import Cmd 
-from classes.Robot_RRR.RobotRRR import Robot
+from classes.robot.Robot import Robot
 import time
 
 ###### Este archivo sirve únicamente para el modo manual del servidor ##############
