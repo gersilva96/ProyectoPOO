@@ -2,6 +2,7 @@ import sys
 import os
 from cmd import Cmd
 from classes.XmlRpcServer import XmlRpcServer
+from classes.Robot_RRR.ComandosRobot import ComandosR
 
 class Comandos(Cmd):
 	doc_header = 'Ayuda de comandos documentados (escriba \'help <command>\')'
@@ -33,6 +34,9 @@ class Comandos(Cmd):
 			option = input('mode >> ')
 			if option.lower() == keys[0]:
 				print('\nEjecutando modo manual...\n')
+				rob = ComandosR()
+				rob.prompt = 'Ingrese instrucción: '
+				rob.cmdloop('Iniciando entrada de comandos. Intruduzca Help para ver los comandos del modo manual.')
 			elif option.lower() == keys[1]:
 				print('\nEjecutando modo automático...\n')
 			elif option.lower() == keys[2]:
