@@ -38,7 +38,7 @@ class Comandos(Cmd):
 				rob.prompt = 'Ingrese instrucción: '
 				rob.cmdloop('Iniciando entrada de comandos. Intruduzca Help para ver los comandos del modo manual.')
 			elif option.lower() == keys[1]:
-				print('\nEjecutando modo automático...\n')
+				from classes import ModoAutomatico
 			elif option.lower() == keys[2]:
 				print('\nSaliendo del comando \'mode\'...\n')
 			elif option == 'clear':
