@@ -8,7 +8,6 @@ class XmlRpcServer(object):
 
 		# Creacion del servidor indicando el puerto deseado
 		self.server = SimpleXMLRPCServer(('localhost', self.puerto), logRequests=False)
-
 		# Se registra cada funcion
 		self.server.register_function(self.do_saludar, 'saludar')
 		self.server.register_function(self.do_despedir, 'despedir')
@@ -30,11 +29,20 @@ class XmlRpcServer(object):
 		self.thread.join()
 
 	def do_saludar(self):
-		mensaje = 'Hola!! desde el servidor'
+
+		m1 = '*' + '-'*70 + '*' + '\n'
+		m2 = '|' + '{:^70}'.format('Programación Orientada a Objetos 2020') + '|' + '\n'
+		#m3 = '|' + '{:^70}'.format('Intefaz de control servidor Robot-RRR') + '|' + '\n'
+		m4 = '|' + '{:^70}'.format('') + '|' + '\n'
+		m5 = '|' + '{:>70}'.format('Wieckowski, Martín - Silva, Germán') + '|' + '\n'
+		m6 = '|' + '{:^70}'.format('') + '|' + '\n'
+		m7 = '|' + '{:<70}'.format('   Bienvenido al programa Cliente    ') + '|' + '\n'
+		m8 = '*' + '-'*70 + '*\n' + '\n'
+		mensaje = m1+m2+m4+m5+m6+m7+m8
 		return mensaje
 
 	def do_despedir(self):
-		mensaje = 'Nos vemos pibe'
+		mensaje = '******************Programa finalizado***********************'
 		return mensaje
 
 	def do_sumar(self, num1, num2):

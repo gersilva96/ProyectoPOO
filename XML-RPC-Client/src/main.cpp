@@ -20,6 +20,8 @@ int main(int argc, char *argv[]) {
   client.execute("saludar", noArgs, result);
   cout << result << endl << endl;
 
+    
+
   while (inMenu) {
     int opc = 1;
     do {
@@ -27,10 +29,10 @@ int main(int argc, char *argv[]) {
         cout << "Opción invalida..." << endl;
       }
       cout << "Menú:" << endl
-      << "1: Sumar dos números" << endl
-      << "2: Restar dos números" << endl
-      << "3: Multiplicar dos números" << endl
-      << "4: Dividir dos números" << endl
+      << "1: Iniciar modo de prueba" << endl
+      << "2: Modo manual" << endl
+      << "3: Ver reporte" << endl
+      << "4: Ayuda de comandos" << endl
       << "0: Salir" << endl << endl
       << "Ingrese opción: ";
       cin >> opc;
