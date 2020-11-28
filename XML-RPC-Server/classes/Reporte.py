@@ -53,6 +53,6 @@ class Reporte():
 
     def reporteAcciones(self):
         report = '\n'
-        with open('logs/log.txt', 'r') as f:
+        with open('log.txt', 'r') as f:
             report += f.read()
         return report

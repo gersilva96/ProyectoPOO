@@ -6,7 +6,7 @@ from classes.robot.Robot import Robot
 
 
 # Creo el archivo de logs dejándolo vacío al principio
-with open('logs/log.txt', '+w') as f:
+with open('log.txt', '+w') as f:
   pass
 
 # Inicializo la CLI
