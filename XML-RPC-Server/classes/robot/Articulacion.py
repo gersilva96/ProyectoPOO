@@ -33,7 +33,6 @@ class Articulacion():
             if sePuedeGirar:
                 self.angulo -= ang
                 tiempo = ((ang * math.pi / 180) / self.velocidad)
-                print('\nGirando articulación...')
                 time.sleep(tiempo)
                 return True
             else:
@@ -43,7 +42,6 @@ class Articulacion():
             if sePuedeGirar:
                 self.angulo += ang
                 tiempo = ((ang * math.pi / 180) / self.velocidad)
-                print('\nGirando articulación...')
                 time.sleep(tiempo)
                 return True
             else:

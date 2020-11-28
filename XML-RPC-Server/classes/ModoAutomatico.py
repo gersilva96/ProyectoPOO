@@ -28,5 +28,3 @@ def modoAutomatico():
     print('\nIntentando accionar el efector final 5 segundos...')
     intento = acciones.setEstadoEfectorFinal(5)
     print(intento)
-
-    print('\n*************Modo automático finalizado***************\n')
