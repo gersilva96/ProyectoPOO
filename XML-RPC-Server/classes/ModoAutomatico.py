@@ -1,54 +1,32 @@
-from classes.robot.Robot import Robot
-import time
-
-rob = Robot()
-
-print("\nEjecutando el modo de prueba...\n")
-print("Moviendo la articulación base, 20° a 3 rad/s en sentido horario")
-if rob.articulacion1.setAngulo(20, True) == False:
-  time.sleep(3)
-  print("Articulación rotada con éxito")
-else:
-  print("Angulo de articulación excedio")
-
-print("\nMoviendo la articulación media, 15° a 1 rad/s en sentido antihorario")
-if rob.articulacion2.setAngulo(15, False) == False:
-  time.sleep(3)
-  print("Articulación rotada con éxito")
-else:
-  print("Angulo de articulación excedio")
-
-print("\nMoviendo la articulación final, 5° a 3 rad/s en sentido horario")
-if rob.articulacion3.setAngulo(5, True) == False:
-  time.sleep(3)
-  print("Articulación rotada con éxito")
-else:
-  print("Angulo de articulación excedio")
+from classes.XmlRpcServer import XmlRpcServer
+from classes.robot.Acciones import acciones
 
 
-print("\nIntentamos de mover la articulación final 90°")
-if rob.articulacion3.setAngulo(90, True) == False:
-  time.sleep(3)
-  print("Articulación rotada con éxito")
-else:
-  time.sleep(3)
-  print("Angulo de articulación excedio!!!")
+def modoAutomatico():
+    print('\nEjecutando el modo automático...\n')
 
-print("\nIntentamos mover la articulación de la base a 200 rad/s")
-if rob.articulacion1.setVelocidad(200) == False:
-  time.sleep(3)
-  print("Articulación rotada con éxito")
-else:
-  time.sleep(3)
-  print("Velocidad de la articulación excedida!!!")
+    print('\nIntentando mover la articulación \'' + str(XmlRpcServer.robot.getNombreArt(0)) + '\', 20° en sentido antihorario...')
+    intento = acciones.setAnguloArticulacion(0, 'A', 20)
+    print(intento)
 
-print("\nActivamos el efector final durante 5 segundos")
-rob.EfectorFinal(5)
-print("Efector activado con éxito")
+    print('\nIntentando mover la articulación \'' + str(XmlRpcServer.robot.getNombreArt(1)) + '\', 15° en sentido antihorario...')
+    intento = acciones.setAnguloArticulacion(1, 'A', 15)
+    print(intento)
 
-print("\n\n*************Modo de prueba finalizado***************\n\n")
+    print('\nIntentando mover la articulación \'' + str(XmlRpcServer.robot.getNombreArt(2)) + '\', 5° en sentido horario...')
+    intento = acciones.setAnguloArticulacion(2, 'H', 5)
+    print(intento)
 
+    print('\nIntentando cambiar la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(2)) + '\', a 6.5 rad/s...')
+    intento = acciones.setVelocidadArticulacion(2, 6.5)
+    print(intento)
 
+    print('\nIntentando mover la articulación \'' + str(XmlRpcServer.robot.getNombreArt(2)) + '\', 90° en sentido antihorario...')
+    intento = acciones.setAnguloArticulacion(2, 'A', 90)
+    print(intento)
 
+    print('\nIntentando accionar el efector final 5 segundos...')
+    intento = acciones.setEstadoEfectorFinal(5)
+    print(intento)
 
-
+    print('\n*************Modo automático finalizado***************\n')

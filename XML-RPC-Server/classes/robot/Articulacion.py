@@ -1,54 +1,51 @@
+class Articulacion():
 
-class ArticulacionC:
-	Velocidad=25
-	AnguloMax=0.0
-	AnguloMin=0.0
-	VelocidadMax=0
-	Angulo=0.0
+    def __init__(self, id, nombre, anguloMinimo, anguloMaximo, velocidadMaxima):
+        self.id = id
+        self.nombre = nombre
+        self.angulo = 0.0
+        self.anguloInicial = 0.0
+        self.anguloMinimo = anguloMinimo
+        self.anguloMaximo = anguloMaximo
+        self.velocidad = 1.0
+        self.velocidadInicial = 1.0
+        self.velocidadMinima = 0.1
+        self.velocidadMaxima = velocidadMaxima
 
-	def __init__(self, AnguloMax, AnguloMin, VelocidadMax):
-		self.AnguloMax=AnguloMax
-		self.AnguloMin=AnguloMin
-		self.VelocidadMax=VelocidadMax
-		
-	
-	def getVelocidad(self):
-		return self.Velocidad
+    def getId(self):
+        return self.id
 
-	def getAngulo(self):
-		return self.Angulo
-		
-	def setVelocidad(self, NuevaVelocidad):
-		a=float(NuevaVelocidad)
-		b=float(self.VelocidadMax)
-		if a > b:
-			return True
-		else:
-			self.Velocidad=NuevaVelocidad
-			return False
+    def getNombre(self):
+        return self.nombre
 
-	def setAngulo(self, NuevoAngulo, Sentido):
-		a=float(self.Angulo)
-		b=float(NuevoAngulo)
-		d=float(self.AnguloMax)
-		if Sentido == True:
-			c = a + b
-		else:
-			c = a - b
+    def getAngulo(self):
+        return self.angulo
 
-		if c < d:
-			self.Angulo=c
-			return False
-		else:
-			return True
+    def getVelocidad(self):
+        return self.velocidad
 
+    def setAngulo(self, sen, ang):
+        sentido, angulo = str(sen).upper(), float(ang)
+        if (sentido == 'H'):
+            sePuedeGirar = (self.angulo - angulo) >= self.anguloMinimo
+            if sePuedeGirar:
+                self.angulo -= angulo
+                return True
+            else:
+                return False
+        elif (sentido == 'A'):
+            sePuedeGirar = (self.angulo + angulo) <= self.anguloMaximo
+            if sePuedeGirar:
+                self.angulo += angulo
+                return True
+            else:
+                return False
+        else:
+            return False
 
-
-
-
-
-
-
-
-
-
+    def setVelocidad(self, vel):
+        velocidad = float(vel)
+        if (velocidad > self.velocidadMaxima or velocidad < self.velocidadMinima):
+            return False
+        self.velocidad = velocidad
+        return True

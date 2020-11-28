@@ -1,56 +1,75 @@
 import socket
 from threading import Thread
 from xmlrpc.server import SimpleXMLRPCServer
+from classes.robot.Robot import Robot
+
 
 class XmlRpcServer(object):
-	def __init__(self):
-		self.puerto = 8000
 
-		# Creacion del servidor indicando el puerto deseado
-		self.server = SimpleXMLRPCServer(('localhost', self.puerto), logRequests=False)
+    robot = None
 
-		# Se registra cada funcion
-		self.server.register_function(self.do_saludar, 'saludar')
-		self.server.register_function(self.do_despedir, 'despedir')
-		self.server.register_function(self.do_sumar, 'sumar')
-		self.server.register_function(self.do_restar, 'restar')
-		self.server.register_function(self.do_multiplicar, 'multiplicar')
-		self.server.register_function(self.do_dividir, 'dividir')
+    def __init__(self):
+        self.puerto = 8000
+        self.direccion = None
 
-		# Se lanza el servidor
-		self.thread = Thread(target=self.run_server)
-		self.thread.start()
-		print('Servidor XML-RPC iniciado en [' + str(self.server.server_address[0]) + '], puerto [' + str(self.server.server_address[1]) + ']')
+        # Creacion del servidor indicando el puerto deseado
+        self.server = SimpleXMLRPCServer(
+            ('localhost', self.puerto), allow_none=True, logRequests=False)
 
-	def run_server(self):
-		self.server.serve_forever()
+        # Se registra cada funcion
+        self.server.register_function(self.do_saludar, 'saludar')
+        self.server.register_function(self.do_despedir, 'despedir')
+        self.server.register_function(self.do_setAnguloArticulacion, 'setAnguloArticulacion')
+        self.server.register_function(self.do_setVelocidadArticulacion, 'setVelocidadArticulacion')
+        self.server.register_function(self.do_setEstadoEfectorFinal, 'setEstadoEfectorFinal')
+        self.server.register_function(self.do_getNombreRobot, 'getNombreRobot')
+        self.server.register_function(self.do_getNombreArticulacion, 'getNombreArticulacion')
+        self.server.register_function(self.do_getNombreEfectorFinal, 'getNombreEfectorFinal')
+        self.server.register_function(self.do_reporteRobot, 'reporteRobot')
+        self.server.register_function(self.do_reporteAcciones, 'reporteAcciones')
 
-	def shutdown(self):
-		self.server.shutdown()
-		self.thread.join()
+        # Se lanza el servidor
+        self.thread = Thread(target=self.run_server)
+        self.thread.start()
+        self.direccion = self.server.server_address[0]
+        print('Servidor XML-RPC iniciado en [' + str(self.server.server_address[0]) + ':' + str(self.server.server_address[1]) + ']\n')
 
-	def do_saludar(self):
-		mensaje = 'Hola!! desde el servidor'
-		return mensaje
+    def run_server(self):
+        self.server.serve_forever()
 
-	def do_despedir(self):
-		mensaje = 'Nos vemos pibe'
-		return mensaje
+    def shutdown(self):
+        self.server.shutdown()
+        self.thread.join()
+        self.server = None
 
-	def do_sumar(self, num1, num2):
-		suma = num1 + num2
-		return suma
+    def do_saludar(self):
+        mensaje = 'Hola!! desde el servidor'
+        return mensaje
 
-	def do_restar(self, num1, num2):
-		resta = num1 - num2
-		return resta
+    def do_despedir(self):
+        mensaje = 'Nos vemos pibe'
+        return mensaje
 
-	def do_multiplicar(self, num1, num2):
-		multiplicacion = num1 * num2
-		return multiplicacion
+    def do_setAnguloArticulacion(self):
+        pass
 
-	def do_dividir(self, num1, num2):
-		if num2 == 0:
-			return 'Cómo vas a dividir por cero?'
-		division = num1 / num2
-		return division
+    def do_setVelocidadArticulacion(self):
+        pass
+
+    def do_setEstadoEfectorFinal(self):
+        pass
+
+    def do_getNombreRobot(self):
+        return self.robot.getNombre()
+
+    def do_getNombreArticulacion(self, articulacion):
+        return self.robot.getNombreArt(int(articulacion))
+
+    def do_getNombreEfectorFinal(self):
+        return self.robot.getNombreEfectorFinal()
+
+    def do_reporteRobot(self):
+        pass
+
+    def do_reporteAcciones(self):
+        pass
