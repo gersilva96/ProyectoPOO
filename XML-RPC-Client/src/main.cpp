@@ -13,6 +13,7 @@ void dividir(XmlRpc::XmlRpcClient client);
 int main(int argc, char *argv[]) {
   int port = 8000;
   bool inMenu = true;
+  bool inModoManual = true;
 
   XmlRpcClient client("127.0.0.1", port);
   XmlRpcValue noArgs, result, result2;
@@ -48,8 +49,45 @@ int main(int argc, char *argv[]) {
         sumar(client);
         break;
       case 2:
-        restar(client);
-        break;
+        while (inModoManual) {
+          int opc2 = 1;
+          do {
+            if (opc2 < 0 || opc2 > 4) {
+              cout << "Opción invalida..." << endl;
+            }
+            cout << "Opciones del modo manual:" << endl
+            << "1: Rotar articulacion de la base " << endl
+            << "2: Rotar articulacion media " << endl
+            << "3: Rotar articulacion superior" << endl
+            << "4: Activar efector final" << endl
+            << "0: Salir del modo manual" << endl << endl
+            << "Ingrese opción: ";
+            cin >> opc2;
+            cout << endl;
+          } 
+          while (opc2 < 0 || opc2 > 4);
+            switch (opc2) {
+              case 0:
+                inModoManual = false;
+                cout << "\nVolviendo al menu principal...\n" << endl;
+              break;
+                case 1:
+                cout << "Rotando articulacion de la base\n" << endl;
+              break;
+              case 2:
+                cout << "Rotando articulacion media" << endl;
+              break;
+              case 3:
+                cout << "Rotando articulacion superior" << endl;
+              break;
+              case 4:
+                cout << "Activando efector final" << endl;
+              break;  
+              default:
+              break;
+    }
+  }
+      break;
       case 3:
         multiplicar(client);
         break;
