@@ -11,9 +11,9 @@ class Robot():
         self.version = 'v1.0.0'
         self.automatico = False
         self.articulaciones = []
-        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Base', 0.0, 360.0, 10.0))
-        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Base-Codo', 45.0, 90.0, 10.0))
-        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Codo-EfectorFinal', 0.0, 60.0, 10.0))
+        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Base', 0.0, 360.0, 2.0))
+        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Base-Codo', 45.0, 90.0, 2.0))
+        self.articulaciones.append(Articulacion(uuid.uuid4(), 'Codo-EfectorFinal', 0.0, 60.0, 2.0))
         self.efectorFinal = EfectorFinal(uuid.uuid4(), 'Pinza')
 
     # Getters y Setters del robot

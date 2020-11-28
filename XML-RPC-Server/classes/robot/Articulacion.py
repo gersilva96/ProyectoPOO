@@ -1,15 +1,17 @@
+import time
+import math
+
+
 class Articulacion():
 
     def __init__(self, id, nombre, anguloMinimo, anguloMaximo, velocidadMaxima):
         self.id = id
         self.nombre = nombre
         self.angulo = 0.0
-        self.anguloInicial = 0.0
         self.anguloMinimo = anguloMinimo
         self.anguloMaximo = anguloMaximo
-        self.velocidad = 1.0
-        self.velocidadInicial = 1.0
-        self.velocidadMinima = 0.1
+        self.velocidad = 0.2
+        self.velocidadMinima = 0.01
         self.velocidadMaxima = velocidadMaxima
 
     def getId(self):
@@ -24,28 +26,34 @@ class Articulacion():
     def getVelocidad(self):
         return self.velocidad
 
-    def setAngulo(self, sen, ang):
-        sentido, angulo = str(sen).upper(), float(ang)
-        if (sentido == 'H'):
-            sePuedeGirar = (self.angulo - angulo) >= self.anguloMinimo
+    def setAngulo(self, sentido, angulo):
+        sen, ang = str(sentido).upper(), float(angulo)
+        if (sen == 'H'):
+            sePuedeGirar = (self.angulo - ang) >= self.anguloMinimo
             if sePuedeGirar:
-                self.angulo -= angulo
+                self.angulo -= ang
+                tiempo = ((ang * math.pi / 180) / self.velocidad)
+                print('\nGirando articulación...')
+                time.sleep(tiempo)
                 return True
             else:
                 return False
-        elif (sentido == 'A'):
-            sePuedeGirar = (self.angulo + angulo) <= self.anguloMaximo
+        elif (sen == 'A'):
+            sePuedeGirar = (self.angulo + ang) <= self.anguloMaximo
             if sePuedeGirar:
-                self.angulo += angulo
+                self.angulo += ang
+                tiempo = ((ang * math.pi / 180) / self.velocidad)
+                print('\nGirando articulación...')
+                time.sleep(tiempo)
                 return True
             else:
                 return False
         else:
             return False
 
-    def setVelocidad(self, vel):
-        velocidad = float(vel)
-        if (velocidad > self.velocidadMaxima or velocidad < self.velocidadMinima):
+    def setVelocidad(self, velocidad):
+        vel = float(velocidad)
+        if (vel > self.velocidadMaxima or vel < self.velocidadMinima):
             return False
-        self.velocidad = velocidad
+        self.velocidad = vel
         return True

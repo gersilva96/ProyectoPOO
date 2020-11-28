@@ -40,7 +40,7 @@ class PanelDeControl(Cmd):
             elif option == keys[1]:
                 print(reporte.reporteAcciones())
             elif option == keys[2]:
-                print('\nSaliendo del comando \'report\'\n')
+                print('\nSaliendo del comando \'report\'...\n')
             elif option == 'help':
                 utils.printOptions(options)
             elif option == 'clear':
@@ -154,7 +154,7 @@ class PanelDeControl(Cmd):
             elif option == keys[1]:
                 comandosRobot.efectorFinal()
             elif option == keys[2]:
-                print('\nSaliendo del comando \'mode >> manual\'\n')
+                print('\nSaliendo del comando \'mode >> manual\'...\n')
             elif option == 'help':
                 utils.printOptions(options)
             elif option == 'clear':

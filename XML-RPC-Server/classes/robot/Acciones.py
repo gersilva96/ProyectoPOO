@@ -20,7 +20,6 @@ class Acciones():
             return '\nLa articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\' giró correctamente ' + str(float(angulo)) + '° en sentido ' + str(sentidoGiro) + ', se encuentra en ' + str(XmlRpcServer.robot.getAnguloArt(art)) + '°.\n'
         else:
             return '\nLa articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\' no pudo girar correctamente, ángulo fuera de los límites. Se encuentra en ' + str(XmlRpcServer.robot.getAnguloArt(art)) + '°\n'
-        pass
 
     def setVelocidadArticulacion(self, articulacion, velocidad):
         art, vel = int(articulacion), float(velocidad)
@@ -29,7 +28,7 @@ class Acciones():
             logger.velocidadArticulacion(art, velocidad)
             return '\nSe cambió correctamente la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\' a ' + str(float(velocidad)) + ' rad/s.\n'
         else:
-            return '\nNo se pudo cambiar la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\', se mantiene en ' + str(float(XmlRpcServer.robot.getVelocidadArt(art))) + ' rad/s.\n'
+            return '\nNo se pudo cambiar la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\', límites excedidos. Se mantiene en ' + str(float(XmlRpcServer.robot.getVelocidadArt(art))) + ' rad/s.\n'
 
     def setEstadoEfectorFinal(self, tiempo):
         time = float(tiempo)

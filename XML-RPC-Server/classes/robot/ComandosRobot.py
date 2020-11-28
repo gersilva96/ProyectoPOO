@@ -94,7 +94,7 @@ class ComandosRobot():
             if option == keys[0]:
                 time = 0
                 while (time <= 0):
-                    time = float(input('mode >> manual >> eff >> Ingrese el tiempo (en segundos): '))
+                    time = float(input('\nmode >> manual >> eff >> Ingrese el tiempo (en segundos): '))
                 result = acciones.setEstadoEfectorFinal(time)
                 print(result)
             elif option == keys[1]:
