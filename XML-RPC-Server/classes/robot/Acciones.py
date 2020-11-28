@@ -1,5 +1,5 @@
 from classes.XmlRpcServer import XmlRpcServer
-from classes.Logger import logger
+from classes.Logger import Logger
 
 
 class Acciones():
@@ -11,6 +11,7 @@ class Acciones():
         art, sen, ang = int(articulacion), str(sentido), float(angulo)
         correct = XmlRpcServer.robot.setAnguloArt(art, sen, ang)
         if correct:
+            logger = Logger(XmlRpcServer.robot)
             logger.anguloArticulacion(art, sen, ang)
             sentidoGiro = ''
             if (sentido == 'A'):
@@ -25,6 +26,7 @@ class Acciones():
         art, vel = int(articulacion), float(velocidad)
         correct = XmlRpcServer.robot.setVelocidadArt(art, vel)
         if correct:
+            logger = Logger(XmlRpcServer.robot)
             logger.velocidadArticulacion(art, velocidad)
             return '\nSe cambió correctamente la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(art)) + '\' a ' + str(float(velocidad)) + ' rad/s.\n'
         else:
@@ -33,6 +35,7 @@ class Acciones():
     def setEstadoEfectorFinal(self, tiempo):
         time = float(tiempo)
         XmlRpcServer.robot.setEstadoEfectorFinal(time)
+        logger = Logger(XmlRpcServer.robot)
         logger.estadoEfectorFinal(time)
         return '\nSe accionó el efector final durante ' + str(time) + ' segundos.\n'
 

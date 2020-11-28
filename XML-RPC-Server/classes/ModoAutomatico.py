@@ -17,7 +17,7 @@ def modoAutomatico():
     intento = acciones.setAnguloArticulacion(2, 'H', 5)
     print(intento)
 
-    print('\nIntentando cambiar la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(2)) + '\', a 6.5 rad/s...')
+    print('\nIntentando cambiar la velocidad de la articulación \'' + str(XmlRpcServer.robot.getNombreArt(2)) + '\', a 0.65 rad/s...')
     intento = acciones.setVelocidadArticulacion(2, 6.5)
     print(intento)
 
