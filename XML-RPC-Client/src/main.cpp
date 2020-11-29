@@ -3,16 +3,12 @@
 using namespace std;
 #include "XmlRpc/XmlRpc.h"
 using namespace XmlRpc;
+#include "ModoAutomatico.h"
 
-//void saludar(XmlRpc::XmlRpcClient client);
-//void despedir(XmlRpc::XmlRpcClient client);
 string setAnguloArticulacion(XmlRpc::XmlRpcClient client, string art, string sentido, string angulo);
 string setVelocidadArticulacion(XmlRpc::XmlRpcClient client, string art, string velocidad);
 string setEstadoEfectorFinal(XmlRpc::XmlRpcClient client, string tiempo);
-//void getNombreRobot(XmlRpc::XmlRpcClient client);
-//void getNombreArticulacion(XmlRpc::XmlRpcClient client);
-//void getNombreEfectorFinal(XmlRpc::XmlRpcClient client);
-//void reporteRobot(XmlRpc::XmlRpcClient client);
+string reporteRobot(XmlRpc::XmlRpcClient client);
 //void reporteAcciones(XmlRpc::XmlRpcClient client);
 
 int main(int argc, char *argv[]) {
@@ -26,10 +22,11 @@ int main(int argc, char *argv[]) {
   XmlRpcClient client("127.0.0.1", port);
   XmlRpcValue noArgs, result, result2;
 
+  system("clear");
   client.execute("saludar", noArgs, result);
   cout << result << endl << endl;
   client.execute("getNombreRobot", noArgs, result);
-  cout << "El brazo robotico " << result << " está listo para usarse" << endl << endl;
+  cout << "El brazo robótico " << result << " está listo para usarse" << endl << endl;
     
 
   while (inMenu) {
@@ -42,7 +39,7 @@ int main(int argc, char *argv[]) {
       << "1: Iniciar modo de prueba" << endl
       << "2: Modo manual" << endl
       << "3: Ver reporte" << endl
-      << "0: Salir" << endl << endl
+      << "4: Salir" << endl << endl
       << "mode >> ";
       cin >> opc;
       cout << endl;
@@ -54,7 +51,8 @@ int main(int argc, char *argv[]) {
         cout << result << endl;
         break;
       case 1://menu
-        cout << "Iniciar modo de prueba" << endl;
+        cout << "Iniciando modo de prueba..." << endl;
+	      cout << ModoAuto() << endl;
         break;
       case 2://menu
         inModoManual = true;
@@ -170,10 +168,19 @@ int main(int argc, char *argv[]) {
               break;
                   }
                   }
-                break;
-     
+        break;
+      case 3: //menu
+        cout << "Mostrando reporte........." << endl;
+        cout << reporteRobot(client) << endl;
+        break;
+      case 4: //menu
+        inMenu = false;
+        break;  
+      default:
+        break;       
             }
   }
+  cout << "******************Programa Cliente finalizado**********************" << endl;
   return 0;
 }
 
@@ -201,5 +208,12 @@ string setEstadoEfectorFinal(XmlRpc::XmlRpcClient client, string tiempo){
   XmlRpcValue params;
   params[0] = tiempo;
   client.execute("setVelocidadArticulacion", params, result);
+  return result;
+}
+
+string reporteRobot(XmlRpc::XmlRpcClient client){
+  XmlRpcValue result, params;
+
+  client.execute("reporteRobot", params , result);
   return result;
 }

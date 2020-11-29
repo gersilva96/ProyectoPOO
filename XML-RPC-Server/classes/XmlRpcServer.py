@@ -44,7 +44,15 @@ class XmlRpcServer(object):
         self.server = None
 
     def do_saludar(self):
-        return '¡¡Hola desde el servidor!!'
+        m1 = '*' + '-'*70 + '*' + '\n'
+        m2 = '|' + '{:^70}'.format('Programación Orientada a Objetos 2020') + '|' + '\n'
+        m4 = '|' + '{:^70}'.format('') + '|' + '\n'
+        m5 = '|' + '{:^70}'.format('Wieckowski, Martín - Silva, Germán') + '|' + '\n'
+        m6 = '|' + '{:^70}'.format('') + '|' + '\n'
+        m7 = '|' + '{:<70}'.format('   Bienvenido al programa Cliente    ') + '|' + '\n'
+        m8 = '*' + '-'*70 + '*\n' + '\n'
+        mensaje = m1+m2+m4+m5+m6+m7+m8
+        return mensaje
 
     def do_despedir(self):
         return '¡¡Hasta luego!!'
