@@ -12,7 +12,7 @@ string reporteRobotMM(XmlRpc::XmlRpcClient client);
 
 string ModoAuto() {
   int port = 8000;
-  
+
   XmlRpcClient client("127.0.0.1", port);
   XmlRpcValue noArgs, result, result2;
 
@@ -29,7 +29,7 @@ string ModoAuto() {
   //cout << setAnguloArticulacionMM(client, "3", "A", "30") << endl;
 
   //cout << setEstadoEfectorFinalMM(client, "6") << endl;
-    
+
   string mensaje = "Finalizó el modo automático.\n";
 
   return mensaje;

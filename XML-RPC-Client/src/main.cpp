@@ -208,7 +208,7 @@ string setEstadoEfectorFinal(XmlRpc::XmlRpcClient client, string tiempo) {
     XmlRpcValue result;
     XmlRpcValue params;
     params[0] = tiempo;
-    client.execute("setVelocidadArticulacion", params, result);
+    client.execute("setEstadoEfectorFinal", params, result);
     return result;
 }
 
