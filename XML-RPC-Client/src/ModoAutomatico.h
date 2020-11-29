@@ -30,7 +30,7 @@ string ModoAuto() {
 
   //cout << setEstadoEfectorFinalMM(client, "6") << endl;
     
-  string mensaje = "Finalizo el modo de prueba.";
+  string mensaje = "Finalizó el modo automático.\n";
 
   return mensaje;
 }
